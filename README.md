@@ -14,10 +14,10 @@ Start the app by runnig this code: streamlit run stock_price.py on the terminal.
 ## App Preview
 
 ### Stock Data Page
-![Data Page](images/Data_Page.png)
+![Data Page](Images/Data_Page.png)
 
 ### Closing Price Analysis
-![Closing Price](images/Closing_Price.png)
+![Closing Price](Images/Closing_Price.png)
 
 ### Prediction 
-![Prediction](images/Prediction.png)
+![Prediction](Images/Prediction.png)
