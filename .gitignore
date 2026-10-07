@@ -4,3 +4,5 @@ __pycache__/
 .env
 venv/
 .venv/
+.venv311/
+.venv311x64/
