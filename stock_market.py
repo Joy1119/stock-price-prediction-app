@@ -19,7 +19,7 @@ from sklearn.preprocessing import MinMaxScaler
 # Extracting stock data from yahoo
 import yfinance as yf
 from pandas_datareader import data as pdr
-yf.pdr_override()
+# yf.pdr_override()
 import datetime
 
 # start = '2010-01-01'
@@ -36,8 +36,8 @@ end = st.date_input('End Date', dec_31, max_value=max_val)
 
 if start is not None and end is not None:
     if start >= end:
-        st.write('End date must be greater than or equal to start date', color='red')
-        exit(1)
+        st.error('End date must be greater than the start date')
+        st.stop()
 
 company_list = {
     "GOOGLE" : "GOOG",
@@ -45,7 +45,7 @@ company_list = {
     "AMAZON" : "AMZN"
 }
 
-st.title('Stock Market Prediction') 
+st.title('Stock Price Prediction') 
 option = st.selectbox(
     'Select a company to predict',
     ('GOOGLE', 'MICROSOFT', 'AMAZON'))
@@ -54,7 +54,12 @@ selected = company_list[option]
 
 if selected and start and end:
 
-    df = pdr.get_data_yahoo(selected, start, end)
+    # df = pdr.get_data_yahoo(selected, start, end)
+    df = yf.download(selected, start, end)
+
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = df.columns.get_level_values(0)
+    
     st.subheader('Stock Data')
     st.dataframe(df)
 
